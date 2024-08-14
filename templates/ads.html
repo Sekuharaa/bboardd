@@ -1,0 +1,39 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Обьявления
+{% endblock title %}
+
+
+{% block content %}
+<style>
+   .outline {
+    border: 5px solid black;
+    padding: 10px;
+   }
+</style>
+<h1>&nbsp;&nbsp;&nbsp;Всего объявлений - {{ads|length}}</h1>
+<br>
+<br>
+   {% if ads %}
+           {% for ad in ads %}
+                 <hr>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<button><em><a href="/ad/{{ ad.id }}">Объявление</a>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.id }}</em></button></h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Автор:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.user }}</h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Заголовок:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.title}}</h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Дата создания:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.created_at|date:'d M Y' }} </h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Дата последней редакции:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.update_at|date:'d M Y' }} </h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Категория:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.category }}</h4>
+
+                 <div class="outline">
+                     <p>{{ ad.text|safe }}</p>
+                 </div>
+
+           {% endfor %}
+
+
+   {% else %}
+       <h2>&nbsp;&nbsp;&nbsp;Объявлений нет!</h2>
+   {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'flatpages/default.html' %}
+{% load i18n %}
+{% block content %}
+{% if  ad.user == user %}
+        <h1>Редактирование объявления</h1>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}{{ form.media }}
+           <br>
+            <input type="submit" value="Сохранить"/>
+        </form>
+
+{% else %}
+<br>
+        <h1>Редактировать можно только свои объявления</h1>
+
+{% endif %}
+
+{% endblock content %}

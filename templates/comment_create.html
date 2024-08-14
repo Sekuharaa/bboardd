@@ -1,0 +1,14 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+<br>
+<h2> Ваш отклик на объявление {{ ad_id }} </h2>
+<hr>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+<br>
+    <input type="submit" value="Сохранить" />
+</form>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'flatpages/default.html' %}
+<!--{% load i18n %}-->
+
+
+{% block title %}
+Отклики
+{% endblock title %}
+
+
+{% block content %}
+<style>
+   .outline {
+    border: 5px solid black;
+    padding: 10px;
+   }
+</style>
+<br>
+<h2>&nbsp;&nbsp;&nbsp;На объявление {{ ad_id }} принятых откликов - {{ length }}</h2>
+<br>
+<br>
+   {% if queryset %}
+           {% for comment in queryset %}
+
+                 <hr>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Откликнулся:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.user }}</h4>
+
+                 <div class="outline">
+                     <p>{{ comment.text }}</p>
+                 </div>
+
+           {% endfor %}
+
+
+   {% else %}
+       <h2>&nbsp;&nbsp;&nbsp;Откликов нет!</h2>
+   {% endif %}
+
+{% endblock content %}

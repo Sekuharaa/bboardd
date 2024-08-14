@@ -1,0 +1,31 @@
+{% extends 'flatpages/default.html' %}
+
+
+{% block title %}
+Объявление
+{% endblock title %}
+
+
+{% block content %}
+<style>
+   .outline {
+    border: 5px solid black;
+    padding: 10px;
+   }
+</style>
+<h1>&nbsp;&nbsp;&nbsp;Объявление {{ ad.id }}</h1>
+
+     <h3>&nbsp;&nbsp;&nbsp;&nbsp;<em>Заголовок:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.title|safe }}</h3>
+     <h3>&nbsp;&nbsp;&nbsp;&nbsp;<em>Дата создания:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.created_at|date:'d M Y' }} </h3>
+     <h3>&nbsp;&nbsp;&nbsp;&nbsp;<em>Дата последней редакции:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.update_at|date:'d M Y' }} </h3>
+     <h3>&nbsp;&nbsp;&nbsp;&nbsp;<em>Категория:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.category }}</h3>
+     <div class="outline">
+         <p>&nbsp;&nbsp;&nbsp;&nbsp;{{ ad.text|safe }}</p>
+     </div>
+<br>
+
+     <button><a href="/{{ ad.id }}">Откликнуться</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <button><a href="/comments/{{ ad.id }}">Все принятые отклики</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <button><a href="/ad/{{ ad.id }}/edit/">Редактировать объявление</a></button>
+
+{% endblock content %}

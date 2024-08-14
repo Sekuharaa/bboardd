@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.urls import reverse
+
 
 # Create your models here.
 class User(AbstractUser):
@@ -18,6 +20,7 @@ class Category(models.Model):
 
 
 class Ad(models.Model):
+
     CATEGORY_CHOICES = [
         ('TANK', 'Танки'),
         ('HEALER', 'Хилы'),
@@ -41,11 +44,16 @@ class Ad(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('ad_detail', args=[str(self.id)])
+
 class Comment(models.Model):
     ad = models.ForeignKey(Ad, on_delete=models.CASCADE, verbose_name='Объявление')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     status = models.BooleanField(default=False)
 
+    def get_absolute_url(self):
+        return reverse('ad_detail', args=[str(self.ad.id)])
 
 
